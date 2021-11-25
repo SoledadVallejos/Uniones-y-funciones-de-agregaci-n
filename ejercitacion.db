@@ -1,0 +1,20 @@
+-- Micro desafío - Paso 1:
+select series.title, genres.name from series  left join genres on series.genre_id = genres.id;
+select episodes.title, actors.first_name, actors.last_name from episodes inner join actor_episode on episode_id = episodes.id inner join actors on actor_id = actors.id;
+
+-- Micro desafío - Paso 2:
+select distinct actors.first_name, actors.last_name from actors inner join actor_movie on actors.id = actor_id inner join movies on movie_id = movies.id where movies.title like 'La Guerra%';
+
+-- Micro desafío - Paso 3:
+select movies.title, coalesce(genres.name, "No tiene género") from movies left join genres on genre_id = genres.id;
+
+-- Micro desafío - Paso 4:
+select series.title, datediff(series.end_date, series.release_date) as "Duración" from series;
+
+-- Micro desafío - Paso 5:
+select actors.first_name from actors where char_length(actors.first_name) > 6 order by actors.first_name;
+select count(*) from episodes;
+select series.title, count(*) as "Cantidad" from series inner join seasons on seasons.serie_id = series.id group by series.title;
+select genres.name, count(*) as "Cantidad" from genres inner join movies on genres.id = movies.genre_id group by genres.name having count(genres.id) >= 3;
+
+
